@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweets & Savouries | Modern WhatsApp Ordering</title>
+    <meta name="description" content="Order fresh, homemade sweets and savouries with our easy WhatsApp cart system.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">SWEET & <span>SAVOURIES</span></div>
+                <button class="cart-icon-btn" onclick="toggleCart()">
+                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                    <span id="cartCount">0</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button onclick="toggleCart()" style="background:none; border:none; font-size: 1.5rem; cursor:pointer;">×</button>
+        </div>
+        <div id="cartItems">
+            <!-- Items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span>₹<span id="cartTotal">0</span></span>
+            </div>
+            <button class="order-btn" onclick="checkout()" style="width: 100%;">
+                Order on WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Icon -->
+    <a href="https://wa.me/919264953782" class="floating-wa">
+        <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.417-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.305 1.652zm6.599-3.835c1.405.836 2.755 1.28 4.301 1.282 5.142 0 9.325-4.183 9.327-9.325.001-2.492-.97-4.835-2.735-6.601-1.766-1.767-4.11-2.74-6.604-2.74-5.144 0-9.328 4.183-9.33 9.327-.001 1.599.432 3.158 1.251 4.542l-1.004 3.666 3.756-.985zm11.367-12.212c-.285-.143-1.688-.833-1.947-.928-.26-.095-.45-.143-.64.143-.19.285-.736.928-.903 1.12-.166.19-.332.214-.617.071-.285-.143-1.204-.444-2.293-1.415-.848-.756-1.42-1.689-1.586-1.974-.166-.285-.018-.439.124-.581.128-.127.285-.333.428-.5.143-.167.19-.285.285-.476.095-.19.048-.357-.024-.5-.071-.143-.64-1.543-.876-2.112-.23-.553-.464-.477-.64-.486l-.547-.008c-.19 0-.5.071-.76.357-.26.285-1 1-1 2.43s1.047 2.81 1.19 3.001c.143.19 2.06 3.146 4.989 4.411.697.301 1.242.482 1.666.617.7.223 1.338.192 1.843.117.563-.083 1.688-.69 1.925-1.357.238-.667.238-1.238.167-1.357-.071-.119-.26-.19-.546-.333z"/></svg>
+    </a>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Fresh • Homemade • Delicious</h1>
+            <p>Order your favorite meals easily on WhatsApp. Modern experience, traditional taste.</p>
+            <a href="#menu" class="order-btn" style="display: inline-flex; width: auto; padding: 15px 30px;">Explore Menu</a>
+        </div>
+    </section>
+
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our <span>Menu</span></h2>
+            
+            <div class="menu-grid">
+                <!-- Main Highlights -->
+                <div class="menu-card">
+                    <img src="thali.png" alt="Veg Thali" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-header"><h3 class="menu-name">Veg Thali</h3><span class="menu-price">₹120</span></div>
+                        <p class="menu-desc">Complete meal: Dal, Veg Curry, Rice, Roti, Salad.</p>
+                        <button class="order-btn" onclick="addToCart('Veg Thali', 120)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="paneer.png" alt="Paneer Butter Masala" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-header"><h3 class="menu-name">Paneer Butter Masala</h3><span class="menu-price">₹150</span></div>
+                        <p class="menu-desc">Creamy cottage cheese in rich tomato gravy.</p>
+                        <button class="order-btn" onclick="addToCart('Paneer Butter Masala', 150)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Snacks Section -->
+                <div class="menu-card">
+                    <img src="samosa.png" alt="Samosa" class="menu-img">
+                    <div class="menu-info">
+                        <span class="category-badge">Snacks</span>
+                        <div class="menu-header"><h3 class="menu-name">Samosa</h3><span class="menu-price">₹120</span></div>
+                        <p class="menu-desc">5 pieces. Spicy potato filling in crispy crust.</p>
+                        <button class="order-btn" onclick="addToCart('Samosa (5pcs)', 120)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="snacks.png" alt="Namakpare" class="menu-img">
+                    <div class="menu-info">
+                        <span class="category-badge">Snacks</span>
+                        <div class="menu-header"><h3 class="menu-name">Namakpare</h3><span class="menu-price">₹150</span></div>
+                        <p class="menu-desc">250g. Traditional savory crunchy snacks.</p>
+                        <button class="order-btn" onclick="addToCart('Namakpare (250g)', 150)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="snacks.png" alt="Onion Pakode" class="menu-img">
+                    <div class="menu-info">
+                        <span class="category-badge">Snacks</span>
+                        <div class="menu-header"><h3 class="menu-name">Onion Pakode</h3><span class="menu-price">₹150</span></div>
+                        <p class="menu-desc">250g. Hot and crispy onion fritters.</p>
+                        <button class="order-btn" onclick="addToCart('Onion Pakode (250g)', 150)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Sweets Section -->
+                <div class="menu-card">
+                    <img src="snacks.png" alt="Gujhiya" class="menu-img">
+                    <div class="menu-info">
+                        <span class="category-badge">Sweets</span>
+                        <div class="menu-header"><h3 class="menu-name">Gujhiya (Karanji)</h3><span class="menu-price">₹250</span></div>
+                        <p class="menu-desc">10 pieces. Rich Mava and dry fruit filling.</p>
+                        <button class="order-btn" onclick="addToCart('Gujhiya (10pcs)', 250)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="snacks.png" alt="Gulab Jamun" class="menu-img">
+                    <div class="menu-info">
+                        <span class="category-badge">Sweets</span>
+                        <div class="menu-header"><h3 class="menu-name">Gulab Jamun</h3><span class="menu-price">₹220</span></div>
+                        <p class="menu-desc">10 pieces. Traditional soft syrupy sweets.</p>
+                        <button class="order-btn" onclick="addToCart('Gulab Jamun (10pcs)', 220)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="snacks.png" alt="Moong Laddu" class="menu-img">
+                    <div class="menu-info">
+                        <span class="category-badge">Sweets</span>
+                        <div class="menu-header"><h3 class="menu-name">Moong Laddu</h3><span class="menu-price">₹220</span></div>
+                        <p class="menu-desc">Dry fruit Moong Laddu made with love.</p>
+                        <button class="order-btn" onclick="addToCart('Moong Laddu', 220)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Achaar Section -->
+                <div class="menu-card">
+                    <img src="achar.png" alt="Aam Achaar" class="menu-img">
+                    <div class="menu-info">
+                        <span class="category-badge">Achaar</span>
+                        <div class="menu-header"><h3 class="menu-name">Aam Ka Achaar</h3><span class="menu-price">₹150</span></div>
+                        <p class="menu-desc">250g. Homemade spicy mango pickle.</p>
+                        <button class="order-btn" onclick="addToCart('Aam Achaar (250g)', 150)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="achar.png" alt="Mix Achaar" class="menu-img">
+                    <div class="menu-info">
+                        <span class="category-badge">Achaar</span>
+                        <div class="menu-header"><h3 class="menu-name">Mix Achaar</h3><span class="menu-price">₹200</span></div>
+                        <p class="menu-desc">250g. Karele, Pyaaj, Aam (Mix) special recipe.</p>
+                        <button class="order-btn" onclick="addToCart('Mix Achaar (250g)', 200)" style="width: 100%;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">Why Choose <span>Us?</span></h2>
+            <div class="features">
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Fast Ordering</h3>
+                    <p>No login, no password. Just add to cart and send on WhatsApp.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🥘</span>
+                    <h3>Fresh Quality</h3>
+                    <p>We prepare every order fresh using premium ingredients.</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📍</span>
+                    <h3>Local & Trusted</h3>
+                    <p>Proudly serving our local community with love and hygiene.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="contact-info">
+                <h2>Ready to Order?</h2>
+                <br>
+                <a href="https://wa.me/919264953782" class="phone-link">+91 9264953782</a>
+                <div style="margin-top: 1.5rem;">
+                    <a href="https://chat.whatsapp.com/HLEsq7b0EYG0E1TcyuPYOW" class="order-btn" style="display: inline-flex; width: auto; background: #fff; color: #25D366; border: 2px solid #25D366;">Join Our WhatsApp Group</a>
+                </div>
+                <div style="margin-top: 1rem; opacity: 0.8;">FSSAI Licensed Business</div>
+            </div>
+            <p>© 2024 Sweet & Savouries. Developed for Speed.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
